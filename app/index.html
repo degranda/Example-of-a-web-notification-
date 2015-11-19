@@ -103,7 +103,15 @@
         Notification.requestPermission(function (permission) {
           // If the user accepts, let's create a notification
           if (permission === "granted") {
-            var n = new Notification("Hi there!");
+            var n = new Notification("Hi there!", {
+              body: "Some nice text here for the notification.",
+              icon: "/favicon.ico",
+              tag: "123456"
+            });
+
+            n.onclick = function() {
+              window.location = '?message' + this.tag;
+            }
           }
         });
       }
